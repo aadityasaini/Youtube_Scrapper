@@ -41,6 +41,16 @@
 - This year, the first 50,000 participants can earn a T-shirt.
 ---
 
+## Connect with us ❤️
+  <a href="https://twitter.com/Matrixio6/">
+    <img width="30px" src="https://www.vectorlogo.zone/logos/twitter/twitter-official.svg" />
+  </a>&ensp;
+  <a href="https://www.linkedin.com/company/matrix-io/">
+    <img width="30px" src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" />
+  </a>&ensp;
+  <a href="https://www.instagram.com/matrixiocommunity/">
+    <img width="30px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg" />
+
 
 
 

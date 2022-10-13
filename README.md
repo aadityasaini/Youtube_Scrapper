@@ -27,7 +27,7 @@
     </a>
 </p>
 
-<h1 align="center"> Hacktoberfest 2021 🌟</h1>
+<h1 align="center"> Hacktoberfest 2022 🌟</h1>
 
 <div align="center">
 

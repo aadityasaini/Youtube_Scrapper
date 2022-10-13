@@ -55,13 +55,20 @@
   
 ## Connect with us ❤️
   <a href="https://twitter.com/Matrixio6/">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/twitter/twitter-official.svg" />
+    <img width="30px" src="https://www.vectorlogo.zone/logos/twitter/twitter-official.svg" title="Twitter" />
   </a>&ensp;
   <a href="https://www.linkedin.com/company/matrix-io/">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" />
+    <img width="30px" src="https://www.vectorlogo.zone/logos/linkedin/linkedin-icon.svg" title="Linkedin" />
   </a>&ensp;
   <a href="https://www.instagram.com/matrixiocommunity/">
-    <img width="30px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg" />
+    <img width="30px" src="https://www.vectorlogo.zone/logos/instagram/instagram-icon.svg" title="Instagram" />
+  </a>&ensp;
+  <a href="https://discord.gg/VyKh8v4Naw/">
+    <img width="30px" src="https://user-images.githubusercontent.com/100709956/195646558-69c166d8-2521-4ee9-9f50-238a25813e2a.jpg" title="Discord" />
+
+
+
+
 
 
 

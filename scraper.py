@@ -41,7 +41,7 @@ class Scrape:
 
         A = []
         for data in content:
-            for key , value in data.items():
+            for value in data.values():
                 if type(value) is dict:
                     D = {}
                     for k,v in value.items():
@@ -58,6 +58,7 @@ class Scrape:
 
     def data(self,query):
         doc = self.Scraper(query)
+        seconds,minutes,hours,days,weeks,months,years=([] for _ in range(7))
         for ele in doc:
             try:
                 duration = ele["Duration"]
@@ -75,8 +76,43 @@ class Scrape:
                     "1.5 x"  : convert_time(time/1.5),
                     "2.0 x"  : convert_time(time/2)
                 }
+
+                temp=ele['Published'].split(" ")
+                cursor=temp.index('ago')
+                match temp[cursor-1]:
+                    case ('second'|'seconds'):
+                        print(temp[cursor-2],temp[cursor-1])
+                        seconds.append({'t':temp[cursor-2],'vid':ele})
+                    case ('minute'|'minutes'):
+                        minutes.append({'t':temp[cursor-2],'vid':ele})
+                    case ('hour'|'hours'):
+                        hours.append({'t':temp[cursor-2],'vid':ele})
+                    case ('day'|'days'):
+                        days.append({'t':temp[cursor-2],'vid':ele})
+                    case ('week'|'weeks'):
+                        weeks.append({'t':temp[cursor-2],'vid':ele})
+                    case ('month'|'months'):
+                        months.append({'t':temp[cursor-2],'vid':ele})
+                    case ('year'|'years'):
+                        years.append({'t':temp[cursor-2],'vid':ele})
+                    
             except:
                 pass
-        return doc
+
+        seconds=sorted(seconds,key=lambda d: int(d['t']))
+        minutes=sorted(minutes,key=lambda d: int(d['t']))
+        hours=sorted(hours,key=lambda d: int(d['t']))
+        days=sorted(days,key=lambda d: int(d['t']))
+        weeks=sorted(weeks,key=lambda d: int(d['t']))
+        months=sorted(months,key=lambda d: int(d['t']))
+        years=sorted(years,key=lambda d: int(d['t']))
+
+        result=[]
+
+        [result.append(ele['vid']) for ele in seconds+minutes+hours+days+weeks+months+years]
+            
+        
+        return result
+        # return seconds
 
 

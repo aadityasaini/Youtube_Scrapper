@@ -8,7 +8,7 @@
         <img style="width:900px;" src= "assests\Untitled design.gif"
     </a>
 </p>
-<h3>Execute following commands on your termianl</h3>
+<h3>Execute following commands on your terminal</h3>
 
 &emsp;1. Install all the depedencies
 

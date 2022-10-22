@@ -56,9 +56,11 @@ class Scrape:
                     if D : A.append(D)
         return A
 
-    def data(self,query):
+    def data(self,query,Sort):
         doc = self.Scraper(query)
-        seconds,minutes,hours,days,weeks,months,years=([] for _ in range(7))
+        result=[]
+        if Sort:
+            seconds,minutes,hours,days,weeks,months,years=([] for _ in range(7))
         for ele in doc:
             try:
                 duration = ele["Duration"]
@@ -76,34 +78,34 @@ class Scrape:
                     "1.5 x"  : convert_time(time/1.5),
                     "2.0 x"  : convert_time(time/2)
                 }
-
-                temp=ele['Published'].split(" ")
-                cursor=temp.index('ago')
-                match temp[cursor-1]:
-                    case ('second'|'seconds'):
-                        seconds.append({'t':temp[cursor-2],'vid':ele})
-                    case ('minute'|'minutes'):
-                        minutes.append({'t':temp[cursor-2],'vid':ele})
-                    case ('hour'|'hours'):
-                        hours.append({'t':temp[cursor-2],'vid':ele})
-                    case ('day'|'days'):
-                        days.append({'t':temp[cursor-2],'vid':ele})
-                    case ('week'|'weeks'):
-                        weeks.append({'t':temp[cursor-2],'vid':ele})
-                    case ('month'|'months'):
-                        months.append({'t':temp[cursor-2],'vid':ele})
-                    case ('year'|'years'):
-                        years.append({'t':temp[cursor-2],'vid':ele})
+                if Sort:
+                    temp=ele['Published'].split(" ")
+                    cursor=temp.index('ago')
+                    match temp[cursor-1]:
+                        case ('second'|'seconds'):
+                            seconds.append({'t':temp[cursor-2],'vid':ele})
+                        case ('minute'|'minutes'):
+                            minutes.append({'t':temp[cursor-2],'vid':ele})
+                        case ('hour'|'hours'):
+                            hours.append({'t':temp[cursor-2],'vid':ele})
+                        case ('day'|'days'):
+                            days.append({'t':temp[cursor-2],'vid':ele})
+                        case ('week'|'weeks'):
+                            weeks.append({'t':temp[cursor-2],'vid':ele})
+                        case ('month'|'months'):
+                            months.append({'t':temp[cursor-2],'vid':ele})
+                        case ('year'|'years'):
+                            years.append({'t':temp[cursor-2],'vid':ele})
+                else:
+                    result.append(ele)
                     
             except:
                 pass
-        
-        [ls.sort(key=lambda d: int(d['t'])) for ls in [seconds,minutes,hours,days,weeks,months,years]]
+        if Sort:
+            [ls.sort(key=lambda d: int(d['t'])) for ls in [seconds,minutes,hours,days,weeks,months,years]]
+            [result.append(ele['vid']) for ele in seconds+minutes+hours+days+weeks+months+years]
 
-        result=[]
-
-        [result.append(ele['vid']) for ele in seconds+minutes+hours+days+weeks+months+years]           
-        
+            
         return result
 
 

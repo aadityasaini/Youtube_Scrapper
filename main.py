@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Depends, Header,APIRouter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from scraper import *
 

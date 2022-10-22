@@ -47,13 +47,13 @@ class Scrape:
                     for k,v in value.items():
                         if k == "videoId" and len(v)== 11:
                             D["URL"] = self.video_url+v
-                        if k=='title' and 'runs' in v:
+                        elif k=='title' and 'runs' in v:
                             D["Title"] = v['runs'][0]['text']
-                        if k == "publishedTimeText" and "simpleText" in v:
+                        elif k == "publishedTimeText" and "simpleText" in v:
                             D["Published"] = v["simpleText"]
-                        if k == "lengthText" and "simpleText" in v:
+                        elif k == "lengthText" and "simpleText" in v:
                             D["Duration"] = v["simpleText"]
-                    if D != {} : A.append(D)
+                    if D : A.append(D)
         return A
 
     def data(self,query):
@@ -81,7 +81,6 @@ class Scrape:
                 cursor=temp.index('ago')
                 match temp[cursor-1]:
                     case ('second'|'seconds'):
-                        print(temp[cursor-2],temp[cursor-1])
                         seconds.append({'t':temp[cursor-2],'vid':ele})
                     case ('minute'|'minutes'):
                         minutes.append({'t':temp[cursor-2],'vid':ele})
@@ -98,21 +97,13 @@ class Scrape:
                     
             except:
                 pass
-
-        seconds=sorted(seconds,key=lambda d: int(d['t']))
-        minutes=sorted(minutes,key=lambda d: int(d['t']))
-        hours=sorted(hours,key=lambda d: int(d['t']))
-        days=sorted(days,key=lambda d: int(d['t']))
-        weeks=sorted(weeks,key=lambda d: int(d['t']))
-        months=sorted(months,key=lambda d: int(d['t']))
-        years=sorted(years,key=lambda d: int(d['t']))
+        
+        [ls.sort(key=lambda d: int(d['t'])) for ls in [seconds,minutes,hours,days,weeks,months,years]]
 
         result=[]
 
-        [result.append(ele['vid']) for ele in seconds+minutes+hours+days+weeks+months+years]
-            
+        [result.append(ele['vid']) for ele in seconds+minutes+hours+days+weeks+months+years]           
         
         return result
-        # return seconds
 
 

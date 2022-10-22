@@ -1,3 +1,4 @@
+from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from scraper import *
@@ -21,7 +22,7 @@ app.add_middleware(
 
 scrape_tool = Scrape()
 
-@app.get("/Get_Data/{Query}",tags=["Scraping_Endpoint"])
-async def Get_Data(Query: str):
-    return scrape_tool.data(Query)
+@app.get("/Get_Data",tags=["Scraping_Endpoint"])
+async def Get_Data(Query: str, Sort:Optional[bool]=False):
+    return scrape_tool.data(Query,Sort)
     
